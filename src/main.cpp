@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "configure/config.h"
+#include "usercontrol.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -55,4 +57,10 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	while(true){
+		updateControllerValues();
+		tank_exponential();
+		testing();
+		pros::delay(100);
+	}
 }
