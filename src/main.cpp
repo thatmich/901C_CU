@@ -2,6 +2,7 @@
 
 #include "configure/config.h"
 #include "usercontrol.h"
+#include "odom.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -57,10 +58,13 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	resetPositionFull(gposition, 0, 0, 0);
+	std::string param1("track");
+	pros::Task track_task_frame(track_task, &param1);
 	while(true){
 		updateControllerValues();
 		tank_exponential();
-		testing();
+		//testing();
 		pros::delay(100);
 	}
 }
