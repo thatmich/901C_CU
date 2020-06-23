@@ -3,6 +3,7 @@
 #include "configure/config.h"
 #include "usercontrol.h"
 #include "odom.h"
+#include "graphics/lvgl_functions.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -11,6 +12,7 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+	setup();
 }
 
 /**
