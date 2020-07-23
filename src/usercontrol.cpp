@@ -101,13 +101,3 @@ void tank_exponential(){
 		backL.move_voltage(left);
 		backR.move_voltage(right);
 }
-
-void testing(){
-	float leftEncoder = encoderL.get_value();
-	float rightEncoder = encoderR.get_value();
-	float midEncoder = encoderM.get_value();
-	std::cout << "Left Encoder: " << leftEncoder << std::endl;
-	std::cout << "Right Encoder: " << rightEncoder << std::endl;
-	std::cout << "Mid Encoder: " << midEncoder << std::endl;
-
-}

@@ -12,10 +12,11 @@ void trackPosition(int left, int right, int back, sPos& position){
   position.rightLst = right;
   position.backLst = back;
 
-  float h; // The hypotenuse of the triangle formed by the middle of the robot on the starting position and ending position and the middle of the circle it travels around
+  float h; // The hypotenuse of the triangle formed by the middle of the robot
+           //on the starting position and ending position and the middle of the circle it travels around
 	float i; // Half of the angle that I've traveled
 	float h2; // The same as h but using the back instead of the side wheels
-	float a = (L - R) / (L_DISTANCE_IN + R_DISTANCE_IN); // The angle that I've traveled
+	float a = (L - R) / (L_DISTANCE_IN + R_DISTANCE_IN); // The angle that I've traveled, as well as arc angle
 
   if(a) // if angle is not zero
   {
@@ -24,7 +25,7 @@ void trackPosition(int left, int right, int back, sPos& position){
     float sinI = sin(i);
     h = ((r + R_DISTANCE_IN) * sinI) * 2.0;
 
-		float r2 = S / a; // The radius of the circle the robot travel's around with the back of the robot
+		float r2 = S / a; // The radius of the circle the robot travels around with the back of the robot
 		h2 = ((r2 + S_DISTANCE_IN) * sinI) * 2.0;
 	}
 	else // if there is no arc (unlikely scenario)

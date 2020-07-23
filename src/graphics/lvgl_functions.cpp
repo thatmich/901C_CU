@@ -11,7 +11,7 @@ lv_obj_t * debug_a_label =  lv_label_create(scr, NULL);
 void setup(){
   lv_scr_load(scr);
   lv_label_set_recolor(main_label, true);
-  lv_label_set_text(main_label, "#ffffff Big Odom#");
+  lv_label_set_text(main_label, "#ffffff yo#");
   lv_obj_align(main_label, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
@@ -28,6 +28,8 @@ void odom_debug(float x, float y, float a){
   lv_obj_align(debug_a_label, NULL, LV_ALIGN_IN_TOP_LEFT, 20, 20);
   lv_obj_align(debug_x_label, NULL, LV_ALIGN_IN_TOP_LEFT, 20, 70);
   lv_obj_align(debug_y_label, NULL, LV_ALIGN_IN_TOP_LEFT, 20, 130);
+}
 
-
+void debug_text(char text[100]){
+  lv_label_set_text(main_label, text);
 }
