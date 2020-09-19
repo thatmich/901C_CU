@@ -4,7 +4,7 @@
 #include "usercontrol.h"
 #include "autonomous.h"
 #include "odom.h"
-#include "graphics/lvgl_functions.h"
+#include "graphics/lvgto_functions.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -65,7 +65,7 @@ void opcontrol() {
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
-	motion_prof1D(100, 20);
+	//motion_prof1D(100, 20);
 	pros::delay(10000);
 	debug_text("I AM FINISHED");
 
