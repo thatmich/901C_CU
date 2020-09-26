@@ -4,7 +4,7 @@
 #include "usercontrol.h"
 #include "autonomous.h"
 #include "odom.h"
-#include "graphics/lvgl_functions.h"
+#include "graphics/lvgto_functions.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
