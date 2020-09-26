@@ -61,13 +61,12 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	bool autonTest = true;
+	bool autonTest = false;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
-	motion_prof1D(100, 20);
-	pros::delay(10000);
-	debug_text("I AM FINISHED");
+	//motion_prof1D(100, 20);
+	//debug_text("I AM FINISHED");
 
 
 	while(!autonTest){
