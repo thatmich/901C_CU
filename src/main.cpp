@@ -4,7 +4,7 @@
 #include "usercontrol.h"
 #include "autonomous.h"
 #include "odom.h"
-#include "graphics/lvgto_functions.h"
+#include "graphics/lvgl_functions.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -60,15 +60,51 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
+ void time_based(float time, float power){
+   frontL.move(power);
+	 frontR.move(power);
+	 backL.move(power);
+	 backR.move(power);
+   pros::delay(time);
+   frontL.move(0);
+	 frontR.move(0);
+	 backL.move(0);
+	 backR.move(0);
+ }
+
+void encoder_value(int value){
+	//pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
+	int current_value = encoderL.get_value();
+	int power = 100;
+	if (current_value<value){
+		while (current_value<value){
+			current_value = encoderL.get_value();
+			debug_text(current_value);
+			frontL.move(power);
+ 	 		frontR.move(power);
+ 	 		backL.move(power);
+ 	 		backR.move(power);
+			}
+		}
+	else {
+		frontL.move(0);
+ 		frontR.move(0);
+ 		backL.move(0);
+ 		backR.move(0);
+	}
+}
+
 void opcontrol() {
 	bool autonTest = true;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
 	//motion_prof1D(100, 20);
-	pros::delay(10000);
-	debug_text("I AM FINISHED");
-
+	//pros::delay(10000);
+	debug_text("I AM FINISHED!!");
+	//time_based(10000,100);
+	encoder_value(1000);
 
 	while(!autonTest){
 		updateControllerValues();

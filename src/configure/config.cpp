@@ -5,10 +5,10 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 //declare motor ports
 
-const int frontL_port   = 16;
-const int frontR_port   = 15;
-const int backL_port    = 6;
-const int backR_port    = 5;
+const int frontL_port   = 5;
+const int frontR_port   = 6;
+const int backL_port    = 16;
+const int backR_port    = 15;
 
 // declare motors
 
@@ -18,8 +18,8 @@ pros::Motor backL(backL_port,false);
 pros::Motor backR(backR_port, true);
 
 //declare encoder ports
-const int encoderL_port_top = 2;
-const int encoderL_port_bottom = 1;
+const int encoderL_port_top = 1;
+const int encoderL_port_bottom = 2;
 const int encoderR_port_top = 7;
 const int encoderR_port_bottom = 8;
 const int encoderM_port_top = 4; // middle encoder ports
