@@ -5,10 +5,17 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 //declare motor ports
 
+<<<<<<< HEAD
 const int frontL_port   = 5;
 const int frontR_port   = 6;
 const int backL_port    = 16;
 const int backR_port    = 15;
+=======
+const int frontL_port   = 17;
+const int frontR_port   = 15;
+const int backL_port    = 6;
+const int backR_port    = 5;
+>>>>>>> 67d9581ca0af28f69478f976666f16a7d2ecb2f1
 
 // declare motors
 

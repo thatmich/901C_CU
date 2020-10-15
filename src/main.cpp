@@ -96,15 +96,20 @@ void encoder_value(int value){
 }
 
 void opcontrol() {
-	bool autonTest = true;
+	bool autonTest = false;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
 	//motion_prof1D(100, 20);
+<<<<<<< HEAD
 	//pros::delay(10000);
 	debug_text("I AM FINISHED!!");
 	//time_based(10000,100);
 	encoder_value(1000);
+=======
+	//debug_text("I AM FINISHED");
+
+>>>>>>> 67d9581ca0af28f69478f976666f16a7d2ecb2f1
 
 	while(!autonTest){
 		updateControllerValues();
