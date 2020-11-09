@@ -4,7 +4,7 @@
 #include "usercontrol.h"
 #include "autonomous.h"
 #include "odom.h"
-#include "graphics/lvgto_functions.h"
+#include "graphics/lvgl_functions.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -61,17 +61,16 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	bool autonTest = false;
+	bool autonTest = true;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
-	//motion_prof1D(100, 20);
-	//debug_text("I AM FINISHED");
+	
 
-
-	while(!autonTest){
-		updateControllerValues();
-		tank_exponential();
-		pros::delay(100);
-	}
+	//
+	// while(!autonTest){
+	// 	updateControllerValues();
+	// 	tank_exponential();
+	// 	pros::delay(100);
+	// }
 }
