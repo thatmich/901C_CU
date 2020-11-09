@@ -1,21 +1,25 @@
 #include "config.h"
+#define QUAD_TOP_PORTL 'A'
+#define QUAD_BOTTOM_PORTL 'B'
+#define QUAD_TOP_PORTR 'C'
+#define QUAD_BOTTOM_PORTR 'D'
+#define QUAD_TOP_PORTM 'E'
+#define QUAD_BOTTOM_PORTM 'F'
+
 
 // declares controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 //declare motor ports
 
-<<<<<<< HEAD
-const int frontL_port   = 5;
-const int frontR_port   = 6;
-const int backL_port    = 16;
-const int backR_port    = 15;
-=======
-const int frontL_port   = 17;
+
+const int frontL_port   = 10;
 const int frontR_port   = 15;
-const int backL_port    = 6;
-const int backR_port    = 5;
->>>>>>> 67d9581ca0af28f69478f976666f16a7d2ecb2f1
+const int backL_port    = 5;
+const int backR_port    = 17;
+const int leftIntakePort  = 9;
+const int rightIntakePort = 20;
+
 
 // declare motors
 
@@ -23,15 +27,17 @@ pros::Motor frontL(frontL_port, true);
 pros::Motor frontR(frontR_port, false);
 pros::Motor backL(backL_port,false);
 pros::Motor backR(backR_port, true);
+pros::Motor leftIntake(leftIntakePort,false);
+pros::Motor rightIntake(rightIntakePort,true);
 
-//declare encoder ports
+/*//declare encoder ports
 const int encoderL_port_top = 1;
 const int encoderL_port_bottom = 2;
 const int encoderR_port_top = 7;
 const int encoderR_port_bottom = 8;
 const int encoderM_port_top = 4; // middle encoder ports
 const int encoderM_port_bottom = 3;
-
-pros::ADIEncoder encoderL(encoderL_port_top, encoderL_port_bottom, true);
-pros::ADIEncoder encoderR(encoderR_port_top, encoderR_port_bottom, true);
-pros::ADIEncoder encoderM(encoderM_port_top, encoderM_port_bottom, false);
+*/
+pros::ADIEncoder encoderL(QUAD_TOP_PORTL, QUAD_BOTTOM_PORTL, true);
+pros::ADIEncoder encoderR(QUAD_TOP_PORTR, QUAD_BOTTOM_PORTR, true);
+pros::ADIEncoder encoderM(QUAD_TOP_PORTM, QUAD_BOTTOM_PORTM, false);

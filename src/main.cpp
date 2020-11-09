@@ -75,45 +75,57 @@ void autonomous() {}
 
 void encoder_value(int value){
 	//pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
-	int current_value = encoderL.get_value();
+	int current_valueL1 = encoderL.get_value();
+
 	int power = 100;
-	if (current_value<value){
-		while (current_value<value){
-			current_value = encoderL.get_value();
-			debug_text(current_value);
+	while (current_valueL1<value) {
+			current_valueL1 = encoderL.get_value();
+			char c = current_valueL1;
+			debug_text(c);
 			frontL.move(power);
- 	 		frontR.move(power);
- 	 		backL.move(power);
- 	 		backR.move(power);
-			}
+ 	 		//frontR.move(power);
+ 	 		//backL.move(power);
+ 	 		//backR.move(power);
+			//pros::delay(100);
 		}
-	else {
 		frontL.move(0);
- 		frontR.move(0);
- 		backL.move(0);
- 		backR.move(0);
+		frontR.move(0);
+		backL.move(0);
+		backR.move(0);
+
 	}
-}
+
+
+$h
+
 
 void opcontrol() {
-	bool autonTest = false;
+	/*bool autonTest = true;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
 	pros::Task track_task_frame(track_task, &param1);
 	//motion_prof1D(100, 20);
-<<<<<<< HEAD
 	//pros::delay(10000);
 	debug_text("I AM FINISHED!!");
 	//time_based(10000,100);
-	encoder_value(1000);
-=======
-	//debug_text("I AM FINISHED");
-
->>>>>>> 67d9581ca0af28f69478f976666f16a7d2ecb2f1
-
-	while(!autonTest){
+	//encoder_value(100);
+*/
+	while(true){
 		updateControllerValues();
 		tank_exponential();
+		if(controller.get_digital(DIGITAL_R1)==1){
+			leftIntake.move(100);
+			rightIntake.move(100);
+		}
+		else if (controller.get_digital(DIGITAL_R2)==1){
+			leftIntake.move(-100);
+			rightIntake.move(-100);
+		}
+		else{
+			leftIntake.move(0);
+			rightIntake.move(0);
+		}
+		encoder_value(200);
 		pros::delay(100);
 	}
 }
