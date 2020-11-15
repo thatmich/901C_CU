@@ -102,6 +102,20 @@ void encoderPID(float target, float threshold){
 
 
 void opcontrol() {
+<<<<<<< HEAD
+	bool autonTest = true;
+	resetPositionFull(gposition, 0, 0, 0);
+	std::string param1("track");
+	pros::Task track_task_frame(track_task, &param1);
+	
+
+	//
+	// while(!autonTest){
+	// 	updateControllerValues();
+	// 	tank_exponential();
+	// 	pros::delay(100);
+	// }
+=======
 	/*bool autonTest = true;
 	resetPositionFull(gposition, 0, 0, 0);
 	std::string param1("track");
@@ -130,4 +144,5 @@ void opcontrol() {
 		encoderPID(100,40);
 		pros::delay(100);
 	}
+>>>>>>> 7687c916707f2429d4056b71ee5a815b6348ea35
 }

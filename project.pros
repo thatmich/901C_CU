@@ -290,9 +290,9 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "michileftus",
-            "remote_name": "901C_CU",
-            "slot": 2
+            "description": "Auton Testing Oct 1",
+            "remote_name": "Auton Testing 901C_CU",
+            "slot": 1
         }
     }
 }
