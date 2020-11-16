@@ -74,12 +74,12 @@ void autonomous() {}
 	 backR.move(0);
  }
 
-void encoder_value(int value){
+void encoderPID(float target, float threshold){
 	//pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
-	int current_valueL1 = encoderL.get_value();
-
+	int current_valueL1=encoderL.get_value();
 	int power = 100;
-	while (current_valueL1<value) {
+	float error = target;
+	/*while(value>current_valueL1){
 			current_valueL1 = encoderL.get_value();
 			char c = current_valueL1;
 		//	debug_text(c);
@@ -87,15 +87,20 @@ void encoder_value(int value){
  	 		//frontR.move(power);
  	 		//backL.move(power);
  	 		//backR.move(power);
-			//pros::delay(100);
+			pros::delay(10);
+		}*/
+		while (error > threshold){
+			frontL.move(power);
+			error = target - encoderL.get_value() - current_valueL1;
+			std::cout<<error;
+			pros::delay(10);
 		}
-		frontL.move(0);
-		frontR.move(0);
-		backL.move(0);
-		backR.move(0);
+			frontL.move(0);
+			frontR.move(0);
+			backL.move(0);
+			backR.move(0);
 
-	}
-
+}
 
 void opcontrol() {
 	std::cout << "OP CONTROL IS RUNNING FFS";

@@ -3,8 +3,8 @@
 #define QUAD_BOTTOM_PORTL 'B'
 #define QUAD_TOP_PORTR 'C'
 #define QUAD_BOTTOM_PORTR 'D'
-#define QUAD_TOP_PORTM 'E'
-#define QUAD_BOTTOM_PORTM 'F'
+#define QUAD_TOP_PORTM 'G'
+#define QUAD_BOTTOM_PORTM 'H'
 
 
 // declares controller
