@@ -34,5 +34,5 @@ void debug_text(std::string text){
   int n = text.length();
   char text_array[n+1];
   strcpy(text_array, text.c_str());
-  lv_label_set_text(main_label, "text_array");
+  lv_label_set_text(main_label, text_array);
 }

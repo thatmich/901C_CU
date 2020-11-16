@@ -6,6 +6,37 @@
 #include "odom.h"
 #include "graphics/lvgl_functions.h"
 
+void encoderPID(float target, float threshold){
+	//pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
+	int current_valueL1=encoderL.get_value();
+	int power = 100;
+	float error = target;
+	/*while(value>current_valueL1){
+			current_valueL1 = encoderL.get_value();
+			char c = current_valueL1;
+		//	debug_text(c);
+			frontL.move(power);
+ 	 		//frontR.move(power);
+ 	 		//backL.move(power);
+ 	 		//backR.move(power);
+			pros::delay(10);
+		}*/
+		while (error > threshold){
+			debug_text(std::to_string(error));
+			frontL.move(power);
+			frontR.move(power);
+			backL.move(power);
+			backR.move(power);
+			error = target - encoderL.get_value() - current_valueL1;
+			std::cout<<error;
+			pros::delay(10);
+		}
+			frontL.move(0);
+			frontR.move(0);
+			backL.move(0);
+			backR.move(0);
+
+}
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -46,7 +77,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	encoderPID(800, 20);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -74,42 +107,17 @@ void autonomous() {}
 	 backR.move(0);
  }
 
-void encoderPID(float target, float threshold){
-	//pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
-	int current_valueL1=encoderL.get_value();
-	int power = 100;
-	float error = target;
-	/*while(value>current_valueL1){
-			current_valueL1 = encoderL.get_value();
-			char c = current_valueL1;
-		//	debug_text(c);
-			frontL.move(power);
- 	 		//frontR.move(power);
- 	 		//backL.move(power);
- 	 		//backR.move(power);
-			pros::delay(10);
-		}*/
-		while (error > threshold){
-			frontL.move(power);
-			error = target - encoderL.get_value() - current_valueL1;
-			std::cout<<error;
-			pros::delay(10);
-		}
-			frontL.move(0);
-			frontR.move(0);
-			backL.move(0);
-			backR.move(0);
 
-}
 
 void opcontrol() {
 	std::cout << "OP CONTROL IS RUNNING FFS";
 	std::string debugstring;
+	debugstring = std::to_string(7000);
+	debug_text(debugstring);
 	while(true){
-		//updateControllerValues();
-	//	tank_exponential();
-		 debugstring = std::to_string(7000);
-		 debug_text(debugstring);
+		updateControllerValues();
+		tank_exponential();
+
 		if(controller.get_digital(DIGITAL_R1)==1){
 			leftIntake.move(200);
 			rightIntake.move(200);
@@ -143,7 +151,7 @@ void opcontrol() {
 		else{
 			botRoller.move(0);
 		}
-		encoder_value(200);
+	//	encoder_value(200);
 		pros::delay(100);
 	}
 }
