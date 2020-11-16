@@ -30,6 +30,9 @@ void odom_debug(float x, float y, float a){
   lv_obj_align(debug_y_label, NULL, LV_ALIGN_IN_TOP_LEFT, 20, 130);
 }
 
-void debug_text(char text[100]){
-  lv_label_set_text(main_label, text);
+void debug_text(std::string text){
+  int n = text.length();
+  char text_array[n+1];
+  strcpy(text_array, text.c_str());
+  lv_label_set_text(main_label, "text_array");
 }

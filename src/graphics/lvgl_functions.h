@@ -4,4 +4,4 @@ void setup();
 
 void odom_debug(float x, float y, float a);
 
-void debug_text(char text[100]);
+void debug_text(std::string text);

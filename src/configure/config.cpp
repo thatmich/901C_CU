@@ -12,17 +12,14 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 //declare motor ports
 
-<<<<<<< HEAD
 const int frontL_port   = 16;
-=======
-
-const int frontL_port   = 10;
->>>>>>> 7687c916707f2429d4056b71ee5a815b6348ea35
 const int frontR_port   = 15;
 const int backL_port    = 5;
 const int backR_port    = 17;
-const int leftIntakePort  = 9;
-const int rightIntakePort = 20;
+const int leftIntakePort  = 2;
+const int rightIntakePort = 1;
+const int topRollerPort = 12;
+const int botRollerPort = 11;
 
 
 // declare motors
@@ -33,6 +30,8 @@ pros::Motor backL(backL_port,false);
 pros::Motor backR(backR_port, true);
 pros::Motor leftIntake(leftIntakePort,false);
 pros::Motor rightIntake(rightIntakePort,true);
+pros::Motor topRoller(topRollerPort,false);
+pros::Motor botRoller(botRollerPort,true);
 
 /*//declare encoder ports
 const int encoderL_port_top = 1;
@@ -45,3 +44,6 @@ const int encoderM_port_bottom = 3;
 pros::ADIEncoder encoderL(QUAD_TOP_PORTL, QUAD_BOTTOM_PORTL, true);
 pros::ADIEncoder encoderR(QUAD_TOP_PORTR, QUAD_BOTTOM_PORTR, true);
 pros::ADIEncoder encoderM(QUAD_TOP_PORTM, QUAD_BOTTOM_PORTM, false);
+
+
+pros::Imu imu_sensor(11);

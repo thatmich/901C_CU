@@ -13,7 +13,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	setup();
+	 setup();
+	// imu_sensor.reset();
 }
 
 /**
@@ -81,7 +82,7 @@ void encoder_value(int value){
 	while (current_valueL1<value) {
 			current_valueL1 = encoderL.get_value();
 			char c = current_valueL1;
-			debug_text(c);
+		//	debug_text(c);
 			frontL.move(power);
  	 		//frontR.move(power);
  	 		//backL.move(power);
@@ -96,51 +97,48 @@ void encoder_value(int value){
 	}
 
 
-$h
-
-
 void opcontrol() {
-<<<<<<< HEAD
-	bool autonTest = true;
-	resetPositionFull(gposition, 0, 0, 0);
-	std::string param1("track");
-	pros::Task track_task_frame(track_task, &param1);
-	
-
-	//
-	// while(!autonTest){
-	// 	updateControllerValues();
-	// 	tank_exponential();
-	// 	pros::delay(100);
-	// }
-=======
-	/*bool autonTest = true;
-	resetPositionFull(gposition, 0, 0, 0);
-	std::string param1("track");
-	pros::Task track_task_frame(track_task, &param1);
-	//motion_prof1D(100, 20);
-	//pros::delay(10000);
-	debug_text("I AM FINISHED!!");
-	//time_based(10000,100);
-	//encoder_value(100);
-*/
+	std::cout << "OP CONTROL IS RUNNING FFS";
+	std::string debugstring;
 	while(true){
-		updateControllerValues();
-		tank_exponential();
+		//updateControllerValues();
+	//	tank_exponential();
+		 debugstring = std::to_string(7000);
+		 debug_text(debugstring);
 		if(controller.get_digital(DIGITAL_R1)==1){
-			leftIntake.move(100);
-			rightIntake.move(100);
+			leftIntake.move(200);
+			rightIntake.move(200);
 		}
 		else if (controller.get_digital(DIGITAL_R2)==1){
-			leftIntake.move(-100);
-			rightIntake.move(-100);
+			leftIntake.move(-200);
+			rightIntake.move(-200);
 		}
 		else{
 			leftIntake.move(0);
 			rightIntake.move(0);
 		}
+
+		if(controller.get_digital(DIGITAL_L1)==1){
+			topRoller.move(600);
+
+		}
+		else if (controller.get_digital(DIGITAL_L2)==1){
+			topRoller.move(-600);
+		}
+		else{
+			topRoller.move(0);
+		}
+		if(controller.get_digital(DIGITAL_UP)==1){
+			botRoller.move(600);
+
+		}
+		else if (controller.get_digital(DIGITAL_DOWN)==1){
+			botRoller.move(-600);
+		}
+		else{
+			botRoller.move(0);
+		}
 		encoder_value(200);
 		pros::delay(100);
 	}
->>>>>>> 7687c916707f2429d4056b71ee5a815b6348ea35
 }
