@@ -32,6 +32,8 @@ pros::Motor leftIntake(leftIntakePort,false);
 pros::Motor rightIntake(rightIntakePort,true);
 pros::Motor topRoller(topRollerPort,false);
 pros::Motor botRoller(botRollerPort,true);
+pros::Motor middleroller(topRollerPort, true);
+
 
 /*//declare encoder ports
 const int encoderL_port_top = 1;
