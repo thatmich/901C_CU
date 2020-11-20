@@ -9,7 +9,7 @@
 void encoderPID(float target, float threshold){
  //pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
  int current_valueL1=encoderL.get_value();
- int power = 100;
+ int power = 50;
  float error = target;
  /*while(value>current_valueL1){
 		 current_valueL1 = encoderL.get_value();
@@ -30,6 +30,9 @@ void encoderPID(float target, float threshold){
 		 error = target - encoderL.get_value() - current_valueL1;
 		 std::cout<<error;
 		 pros::delay(10);
+		 if (error-threshold<=50){
+			 power = power / 2;
+		 }
 	 }
 		 frontL.move(0);
 		 frontR.move(0);
@@ -37,6 +40,41 @@ void encoderPID(float target, float threshold){
 		 backR.move(0);
 
 }
+
+void turnLeftPID(float target, float threshold){
+ //pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
+ int current_valueL1=encoderL.get_value();
+ //int current_valueL2=encoderR.get_value();
+ int power = 50;
+ float error = target;
+ /*while(value>current_valueL1){
+		 current_valueL1 = encoderL.get_value();
+		 char c = current_valueL1;
+	 //	debug_text(c);
+		 frontL.move(power);
+			 //frontR.move(power);
+			 //backL.move(power);
+			 //backR.move(power);
+		 pros::delay(10);
+	 }*/
+	 while (error > threshold){
+		 debug_text(std::to_string(error));
+		 //frontL.move(power);
+		 //frontR.move(power);
+		 backL.move(-1*power);
+		 backR.move(power);
+		 error = target - encoderL.get_value() - current_valueL1;
+		 //error = target - encoderR.get_value() - current_valueL2;
+		 std::cout<<error;
+		 pros::delay(10);
+	 }
+		 frontL.move(0);
+		 frontR.move(0);
+		 backL.move(0);
+		 backR.move(0);
+
+}
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -78,7 +116,9 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	encoderPID(800, 20);
+	//encoderPID(800, 20);
+	//turnLeftPID(200,50);
+  frontL.move(100);
 }
 
 /**
