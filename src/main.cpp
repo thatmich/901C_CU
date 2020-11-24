@@ -5,34 +5,63 @@
 #include "autonomous.h"
 #include "odom.h"
 #include "graphics/lvgl_functions.h"
-
+int balanceThreshold = 5;
 void encoderPID(float target, float threshold){
- //pros::ADIEncoder sensor (encoderL_port_top, encoderL_port_bottom, false);
- int current_valueL1=encoderL.get_value();
- int power = 50;
+ int initial_eL =encoderL.get_value();
+ int initial_eR = encoderR.get_value();
+ int power = 0;
+ int lPower = 0;
+ int rPower = 0;
  float error = target;
- /*while(value>current_valueL1){
-		 current_valueL1 = encoderL.get_value();
-		 char c = current_valueL1;
-	 //	debug_text(c);
-		 frontL.move(power);
-			 //frontR.move(power);
-			 //backL.move(power);
-			 //backR.move(power);
+ float integral = 0;
+ float kP = 0.5;
+ float kI = 0.01;
+ float kD = 0.0;
+ float dT = 0;
+
+ float balanceError = 0;
+ float kBP = 0.5;
+ float kBI = 0.01;
+ float kBD = 0.0;
+
+	 while (fabs(error) > fabs(threshold)){
+
+     integral = integral + error;
+
+     if (fabs(error) > 30){
+       integral = 0;
+     }
+
+     if(target * error <= 0){
+           integral = 0;
+         }
+		// debug_text(std::to_string(error));
+		 error = target - encoderL.get_value() - initial_eL;
+		 // std::cout<<error;
+     power = error*kP + integral*kI;
+     lPower = power;
+     rPower = power;
+     balanceError = (encoderL.get_value() - initial_eL) - (encoderR.get_value() - initial_eR);
+     // if balance error is positive while moving forward, left side is too much.
+     // if balance error is negative while movign forward, right side is too much.
+     // if balance error is positive while moving backwards, right side is too much.
+     // if balance error is negative while moving backwards, left side is too much
+     if(fabs(balanceError) > balanceThreshold){
+       if(target > 0){
+         lPower = power - balanceError * kBP;
+         rPower = power + balanceError * kBP;
+       }
+       else if(target < 0){
+         lPower = power + balanceError * kBP;
+         rPower = power - balanceError * kBP;
+       }
+     }
+ 		 frontL.move(lPower);
+ 		 frontR.move(rPower);
+ 		 backL.move(lPower);
+ 		 backR.move(rPower);
 		 pros::delay(10);
-	 }*/
-	 while (error > threshold){
-		 debug_text(std::to_string(error));
-		 frontL.move(power);
-		 frontR.move(power);
-		 backL.move(power);
-		 backR.move(power);
-		 error = target - encoderL.get_value() - current_valueL1;
-		 std::cout<<error;
-		 pros::delay(10);
-		 if (error-threshold<=50){
-			 power = power / 2;
-		 }
+     dT = dT + 10;
 	 }
 		 frontL.move(0);
 		 frontR.move(0);
@@ -47,16 +76,6 @@ void turnLeftPID(float target, float threshold){
  //int current_valueL2=encoderR.get_value();
  int power = 50;
  float error = target;
- /*while(value>current_valueL1){
-		 current_valueL1 = encoderL.get_value();
-		 char c = current_valueL1;
-	 //	debug_text(c);
-		 frontL.move(power);
-			 //frontR.move(power);
-			 //backL.move(power);
-			 //backR.move(power);
-		 pros::delay(10);
-	 }*/
 	 while (error > threshold){
 		 debug_text(std::to_string(error));
 		 //frontL.move(power);
@@ -82,8 +101,11 @@ void turnLeftPID(float target, float threshold){
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	 setup();
-	// imu_sensor.reset();
+	setup();
+	 // imu_sensor.reset();
+    //while(imu_sensor.is_calibrating()){
+      //pros::delay(10);
+    //}
 }
 
 /**
@@ -116,9 +138,9 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	//encoderPID(800, 20);
+	encoderPID(800, 20);
 	//turnLeftPID(200,50);
-  frontL.move(100);
+
 }
 
 /**
