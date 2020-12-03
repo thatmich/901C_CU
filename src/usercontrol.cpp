@@ -100,4 +100,6 @@ void tank_exponential(){
 		frontR.move_voltage(right);
 		backL.move_voltage(left);
 		backR.move_voltage(right);
+		std::cout<<"Left mV:"<<left<<", Left Joystick"<<left_joystick <<std::endl;
+		std::cout<<"Right mV:"<<right<<", Right Joystick"<<right_joystick <<std::endl;
 }

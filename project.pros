@@ -290,9 +290,9 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "11/14",
-            "remote_name": "Auton Testing 901C_CU",
-            "slot": 3
+            "description": "11/27",
+            "remote_name": "901C_CU",
+            "slot": 1
         }
     }
 }

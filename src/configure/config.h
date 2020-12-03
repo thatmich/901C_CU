@@ -1,5 +1,6 @@
 #include "main.h"
 
+struct Initializer;
 // forces a declaration without a definition
 extern const int frontL_port;
 extern const int frontR_port;

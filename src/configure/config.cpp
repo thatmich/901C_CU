@@ -6,14 +6,13 @@
 #define QUAD_TOP_PORTM 'G'
 #define QUAD_BOTTOM_PORTM 'H'
 
-
 // declares controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 bool main_base = true;
 //declare motor ports
 // PROG BOT
 
-// 
+//
 // const int frontL_port   = 16;
 // const int frontR_port   = 15;
 // const int backL_port    = 5;
