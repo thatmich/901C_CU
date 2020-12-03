@@ -28,7 +28,7 @@ void generate_velocity_profile_throttle(float distance, float max_vel, float acc
   float start_vel_to_full_speed_time = max_vel/acc;
   // x = 1/2*a*t^2
   float accel_accumulated_dist = 1/2 * acc * pow(start_vel_to_full_speed_time, 2);
-
+  float
 //  https://github.com/dov/onedmotion/blob/master/onedmotion.py
 }
 
