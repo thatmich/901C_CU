@@ -5,6 +5,7 @@
 #include "autonomous.h"
 #include "odom.h"
 #include "graphics/lvgl_functions.h"
+#include "okapi_functions.h"
 
 
 /**
@@ -53,7 +54,7 @@ void competition_initialize() {}
 void autonomous() {
 	//encoderPID(800, 20);
 	//turnLeftPID(200,50);
-
+testing();
 
 }
 

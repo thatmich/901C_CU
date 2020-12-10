@@ -2,7 +2,7 @@
 using namespace okapi;
 std::shared_ptr<ChassisController> myChassis =
   ChassisControllerBuilder()
-    .withMotors({5, 19}, {-15, -17})
+    .withMotors({-16, 5}, {-15, 17}) //
     // Green gearset, 4 in wheel diam, 11.5 in wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .build();
@@ -16,3 +16,10 @@ std::shared_ptr<AsyncMotionProfileController> profileController =
     })
     .withOutput(myChassis)
     .buildMotionProfileController();
+
+void testing(){
+  profileController->generatePath(
+  {{0_ft, 0_ft, 0_deg}, {100_cm, 20_cm, 0_deg}}, "A");
+profileController->setTarget("A");
+profileController->waitUntilSettled();
+}
