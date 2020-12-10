@@ -15,9 +15,9 @@ std::shared_ptr<AsyncMotionProfileController> profileController =
     .withOutput(myChassis)
     .buildMotionProfileController();
 
-void opcontrol() {
-  profileController->generatePath(
-    {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
-  profileController->setTarget("A");
-  profileController->waitUntilSettled();
-}
+// void opcontrol() {
+//   profileController->generatePath(
+//     {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
+//   profileController->setTarget("A");
+//   profileController->waitUntilSettled();
+// }
