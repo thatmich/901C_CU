@@ -1,3 +1,5 @@
+#include "okapi_functions.h"
+using namespace okapi;
 std::shared_ptr<ChassisController> myChassis =
   ChassisControllerBuilder()
     .withMotors({5, 19}, {-15, -17})
@@ -14,10 +16,3 @@ std::shared_ptr<AsyncMotionProfileController> profileController =
     })
     .withOutput(myChassis)
     .buildMotionProfileController();
-
-// void opcontrol() {
-//   profileController->generatePath(
-//     {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
-//   profileController->setTarget("A");
-//   profileController->waitUntilSettled();
-// }
