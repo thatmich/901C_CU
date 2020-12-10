@@ -5,6 +5,10 @@ std::shared_ptr<ChassisController> myChassis =
     .withMotors({-16, 5}, {-15, 17}) //
     // Green gearset, 4 in wheel diam, 11.5 in wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .withSensors(
+        ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D'}  // Middle encoder in ADI ports C & D (reversed)
+        ADIEncoder{'G', 'H'}, // Right encoder in ADI ports A & B
     .build();
 
 std::shared_ptr<AsyncMotionProfileController> profileController =
@@ -20,6 +24,6 @@ std::shared_ptr<AsyncMotionProfileController> profileController =
 void testing(){
   profileController->generatePath(
   {{0_ft, 0_ft, 0_deg}, {100_cm, 20_cm, 0_deg}}, "A");
-profileController->setTarget("A");
-profileController->waitUntilSettled();
+  profileController->setTarget("A");
+  profileController->waitUntilSettled();
 }
