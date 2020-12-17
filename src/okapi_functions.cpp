@@ -7,9 +7,11 @@ std::shared_ptr<ChassisController> myChassis =
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
-        ADIEncoder{'C', 'D'}  // Middle encoder in ADI ports C & D (reversed)
-        ADIEncoder{'G', 'H'}, // Right encoder in ADI ports A & B
-    .build();
+        ADIEncoder{'C', 'D', true},  // Middle encoder in ADI ports C & D (reversed)
+        ADIEncoder{'G', 'H', true}) // Right encoder in ADI ports A & B
+    // specify the tracking wheels diameter (2.75), track (), and TPR (360)
+    .withOdometry({{2.75_in, 7_in}, quadEncoderTPR}, StateMode::FRAME_TRANSFORMATION)
+    .buildOdometry();
 
 std::shared_ptr<AsyncMotionProfileController> profileController =
   AsyncMotionProfileControllerBuilder()
