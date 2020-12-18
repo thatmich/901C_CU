@@ -9,8 +9,9 @@ std::shared_ptr<ChassisController> myChassis =
         ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
         ADIEncoder{'C', 'D', true},  // Middle encoder in ADI ports C & D (reversed)
         ADIEncoder{'G', 'H', true}) // Right encoder in ADI ports A & B
-    // specify the tracking wheels diameter (2.75), track (), and TPR (360)
+    // specify the tracking wheels diameter (2.75), track (*need to measure, 7 is placeholder*), and TPR (360)
     .withOdometry({{2.75_in, 7_in}, quadEncoderTPR}, StateMode::FRAME_TRANSFORMATION)
+    // positive x is forward, positive y is right
     .buildOdometry();
 
 std::shared_ptr<AsyncMotionProfileController> profileController =
