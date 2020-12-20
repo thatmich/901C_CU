@@ -22,4 +22,7 @@ extern pros::ADIEncoder encoderL;
 extern pros::ADIEncoder encoderR;
 extern pros::ADIEncoder encoderM;
 
+extern pros::ADIDigitalIn auton_limit_plus;
+extern pros::ADIDigitalIn auton_limit_minus;
+
 extern pros::Imu imu_sensor;

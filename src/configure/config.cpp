@@ -41,6 +41,9 @@ const int rightIntakePort = 3;
 const int topRollerPort = 12;
 const int botRollerPort = 14;
 
+const int auton_limit_plus_port = 1;
+const int auton_limit_minus_port = 2;
+
 
 // declare motors
 
@@ -66,5 +69,7 @@ pros::ADIEncoder encoderL(QUAD_TOP_PORTL, QUAD_BOTTOM_PORTL, true);
 pros::ADIEncoder encoderR(QUAD_TOP_PORTR, QUAD_BOTTOM_PORTR, true);
 pros::ADIEncoder encoderM(QUAD_TOP_PORTM, QUAD_BOTTOM_PORTM, false);
 
+pros::ADIDigitalIn auton_limit_plus(auton_limit_plus_port);
+pros::ADIDigitalIn auton_limit_minus(auton_limit_minus_port);
 
 pros::Imu imu_sensor(20);
