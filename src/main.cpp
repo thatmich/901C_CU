@@ -83,14 +83,17 @@ void opcontrol() {
 		if(controller.get_digital(DIGITAL_R1)==1){
 			leftIntake.move(200);
 			rightIntake.move(200);
+			botRoller.move(600);
 		}
 		else if (controller.get_digital(DIGITAL_R2)==1){
 			leftIntake.move(-200);
 			rightIntake.move(-200);
+			botRoller.move(-600);
 		}
 		else{
 			leftIntake.move(0);
 			rightIntake.move(0);
+			botRoller.move(0);
 		}
 
 		if(controller.get_digital(DIGITAL_L1)==1){
@@ -107,13 +110,26 @@ void opcontrol() {
 			botRoller.move(600);
 
 		}
-		else if (controller.get_digital(DIGITAL_DOWN)==1){
+		else if (controller.get_digital(DIGITAL_LEFT)==1){
 			botRoller.move(-600);
 		}
 		else{
 			botRoller.move(0);
 		}
+		if(controller.get_digital(DIGITAL_X)==1){
+			leftIntake.move(200);
+			rightIntake.move(200);
+
+		}
+		else if (controller.get_digital(DIGITAL_A)==1){
+			leftIntake.move(-200);
+			rightIntake.move(-200);
+		}
+		else{
+			leftIntake.move(200);
+			rightIntake.move(200);
+		}
 	//	encoder_value(200);
-		pros::delay(20);
+		pros::delay(10);
 	}
 }
