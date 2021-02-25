@@ -33,9 +33,9 @@ void testing(){
   {{0_ft, 0_ft, 0_deg}, {7_in, 0_in, 10_deg}}, "A");
   profileController->setTarget("A");
   profileController->waitUntilSettled();
-  frontR.move(200);
-  frontR.move(0);
-  pros::delay(100);
+  //frontR.move(200);
+  //frontR.move(0);
+  //pros::delay(100);
   // leftIntake(200);
 	// rightIntake(200);
 	pros::delay(200);
