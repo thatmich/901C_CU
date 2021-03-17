@@ -75,7 +75,7 @@ void track_task(void* param){
     // std::cout<<"X:"<<gposition.x<<std::endl;
     // std::cout<<"Y:"<<gposition.y<<std::endl;
     std::cout<<gposition.x<<", "<<gposition.y<<std::endl;
-    odom_debug(gposition.x,gposition.y,gposition.a);
+    //odom_debug(gposition.x,gposition.y,gposition.a);
     pros::delay(20);
   }
 }
