@@ -7,6 +7,8 @@
 #include "graphics/lvgl_functions.h"
 #include "okapi_functions.h"
 
+using namespace okapi;
+
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -54,7 +56,51 @@ void competition_initialize() {}
 void autonomous() {
 	//encoderPID(800, 20);
 	//turnLeftPID(200,50);
-testing();
+
+	// std::shared_ptr<ChassisController> myChassis =
+	//   ChassisControllerBuilder()
+	//     .withMotors({-5, 17},{}) //
+	//     // Green gearset, 4 in wheel diam, 11.5 in wheel track
+	//     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+	//
+	//     // specify the tracking wheels diameter (2.75), track (), and TPR (360)
+	//     .withOdometry({{2.75_in, 7_in}, quadEncoderTPR}, StateMode::FRAME_TRANSFORMATION)
+	//     .buildOdometry();
+	//
+	// std::shared_ptr<AsyncMotionProfileController> profileController =
+	//   AsyncMotionProfileControllerBuilder()
+	//     .withLimits({
+	//       1.0, // Maximum linear velocity of the Chassis in m/s
+	//       2.0, // Maximum linear acceleration of the Chassis in m/s/s
+	//       10.0 // Maximum linear jerk of the Chassis in m/s/s/s
+	//     })
+	//     .withOutput(myChassis)
+	//     .buildMotionProfileController();
+	//
+	// profileController->generatePath(
+	// {{1_ft, 0.3_ft, 10_deg}, {0_in, 0_in, 10_deg}}, "A");
+	// profileController->setTarget("A");
+	// profileController->waitUntilSettled();
+
+	testing();
+	//frontR.move(200);
+	//frontR.move(0);
+	//pros::delay(100);
+	// leftIntake(200);
+	// rightIntake(200);
+	//pros::delay(200);
+	// leftIntake(0);
+	// rightIntake(0);
+
+	// profileController->generatePath(
+	// {{0_ft, 0_ft, 0_deg}, {0_in, 0_in, 30_deg}}, "B");
+	// profileController->setTarget("B");
+	// profileController->waitUntilSettled();
+	///
+	// profileController->generatePath(
+	// {{0_ft, 0_ft, 0_deg}, {2_in, 0_in, 0_deg}}, "C");
+	// profileController->setTarget("C");
+	// profileController->waitUntilSettled();
 
 }
 
@@ -76,61 +122,61 @@ testing();
 
 
 void opcontrol() {
-	testing();
-	// while(true){
-	// 	updateControllerValues();
-	// 	tank_exponential();
-	//
-	// 	if(controller.get_digital(DIGITAL_R1)==1){
-	// 		leftIntake.move(200);
-	// 		rightIntake.move(200);
-	// 		botRoller.move(600);
-	// 	}
-	// 	else if (controller.get_digital(DIGITAL_R2)==1){
-	// 		leftIntake.move(-200);
-	// 		rightIntake.move(-200);
-	// 		botRoller.move(-600);
-	// 	}
-	// 	else{
-	// 		leftIntake.move(0);
-	// 		rightIntake.move(0);
-	// 		botRoller.move(0);
-	// 	}
-	//
-	// 	if(controller.get_digital(DIGITAL_L1)==1){
-	// 		topRoller.move(600);
-	//
-	// 	}
-	// 	else if (controller.get_digital(DIGITAL_L2)==1){
-	// 		topRoller.move(-600);
-	// 	}
-	// 	else{
-	// 		topRoller.move(0);
-	// 	}
-	// 	if(controller.get_digital(DIGITAL_UP)==1){
-	// 		botRoller.move(600);
-	//
-	// 	}
-	// 	else if (controller.get_digital(DIGITAL_LEFT)==1){
-	// 		botRoller.move(-600);
-	// 	}
-	// 	else{
-	// 		botRoller.move(0);
-	// 	}
-	// 	if(controller.get_digital(DIGITAL_X)==1){
-	// 		leftIntake.move(200);
-	// 		rightIntake.move(200);
-	//
-	// 	}
-	// 	else if (controller.get_digital(DIGITAL_A)==1){
-	// 		leftIntake.move(-200);
-	// 		rightIntake.move(-200);
-	// 	}
-	// 	else{
-	// 		leftIntake.move(200);
-	// 		rightIntake.move(200);
-	// 	}
-	// //	encoder_value(200);
-	// 	pros::delay(10);
-	// }
+	// testing();
+	while(true){
+		updateControllerValues();
+		tank_exponential();
+
+		if(controller.get_digital(DIGITAL_R1)==1){
+			leftIntake.move(200);
+			rightIntake.move(200);
+			botRoller.move(600);
+		}
+		else if (controller.get_digital(DIGITAL_R2)==1){
+			leftIntake.move(-200);
+			rightIntake.move(-200);
+			botRoller.move(-600);
+		}
+		else{
+			leftIntake.move(0);
+			rightIntake.move(0);
+			botRoller.move(0);
+		}
+
+		if(controller.get_digital(DIGITAL_L1)==1){
+			topRoller.move(600);
+
+		}
+		else if (controller.get_digital(DIGITAL_L2)==1){
+			topRoller.move(-600);
+		}
+		else{
+			topRoller.move(0);
+		}
+		if(controller.get_digital(DIGITAL_UP)==1){
+			botRoller.move(600);
+
+		}
+		else if (controller.get_digital(DIGITAL_LEFT)==1){
+			botRoller.move(-600);
+		}
+		else{
+			botRoller.move(0);
+		}
+		if(controller.get_digital(DIGITAL_X)==1){
+			leftIntake.move(200);
+			rightIntake.move(200);
+
+		}
+		else if (controller.get_digital(DIGITAL_A)==1){
+			leftIntake.move(-200);
+			rightIntake.move(-200);
+		}
+		else{
+			leftIntake.move(200);
+			rightIntake.move(200);
+		}
+	//	encoder_value(200);
+		pros::delay(10);
+	}
 }
