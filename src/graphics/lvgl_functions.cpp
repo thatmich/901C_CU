@@ -14,7 +14,7 @@ int autonNo = 1;
 void setup(){
   lv_scr_load(scr);
   lv_label_set_recolor(main_label, true);
-  lv_label_set_text(main_label, "#ff0000 Red Left Home Row# #ffffff Auton#");
+  lv_label_set_text(main_label, "#ff0000 asfadsf Left Home Row# #ffffff Auton#");
   lv_obj_align(main_label, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
@@ -45,14 +45,14 @@ bool add: adds or subtracts a number from autonNo
 */
 void switch_auton(bool add){
   if(add){
-    autonNo++;
+     autonNo++;
   }
   else{
     autonNo--;
   }
   switch (autonNo){
     case 1:
-      lv_label_set_text(main_label, "#ff0000 Red Left Home Row# #ffffff Auton#");
+      lv_label_set_text(main_label, "#ff0000 k;jkl Left Home Row# #ffffff Auton#");
       break;
     case 2:
       lv_label_set_text(main_label, "#ff0000 Red Right Home Row# #ffffff Auton#");
