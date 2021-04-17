@@ -17,7 +17,7 @@ using namespace okapi;
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	setup();
+	//setup();
 	 // imu_sensor.reset();
     //while(imu_sensor.is_calibrating()){
       //pros::delay(10);
@@ -54,8 +54,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-
-	testing();
+//testing();
+prog_skills_right2();
 
 }
 
@@ -78,17 +78,21 @@ void autonomous() {
 
 void opcontrol() {
 	// testing();
+	topRoller.set_brake_mode(MOTOR_BRAKE_COAST);
+	botRoller.set_brake_mode(MOTOR_BRAKE_COAST);
+	leftIntake.set_brake_mode(MOTOR_BRAKE_COAST);
+	rightIntake.set_brake_mode(MOTOR_BRAKE_COAST);
 	while(true){
 		updateControllerValues();
 		tank_exponential();
 
 		if(controller.get_digital(DIGITAL_R1)==1){
-			leftIntake.move(200);
+			leftIntake.move(200); // bottom half intake
 			rightIntake.move(200);
 			botRoller.move(600);
 		}
 		else if (controller.get_digital(DIGITAL_R2)==1){
-			leftIntake.move(-200);
+			leftIntake.move(-200); // bottom half outtake
 			rightIntake.move(-200);
 			botRoller.move(-600);
 		}
@@ -98,25 +102,39 @@ void opcontrol() {
 			botRoller.move(0);
 		}
 
-		if(controller.get_digital(DIGITAL_L1)==1){
-			topRoller.move(600);
+		if(controller.get_digital(DIGITAL_L2)==1){
+			topRoller.move(600); // shoot
+			botRoller.move(600);
 
 		}
-		else if (controller.get_digital(DIGITAL_L2)==1){
-			topRoller.move(-600);
+		else if (controller.get_digital(DIGITAL_L1)==1){
+			topRoller.move(-600); //poop
+			botRoller.move(600);
 		}
 		else{
 			topRoller.move(0);
 		}
 		if(controller.get_digital(DIGITAL_UP)==1){
-			botRoller.move(600);
+			botRoller.move(600); // bottom roller independent
 
 		}
-		else if (controller.get_digital(DIGITAL_LEFT)==1){
+		else if (controller.get_digital(DIGITAL_DOWN)==1){
 			botRoller.move(-600);
 		}
-		else{
+		else if (controller.get_digital(DIGITAL_LEFT)==0 && controller.get_digital(DIGITAL_DOWN)==0 && controller.get_digital(DIGITAL_R2)==0 && controller.get_digital(DIGITAL_L2)==0 && controller.get_digital(DIGITAL_R1)==0 && controller.get_digital(DIGITAL_L2)==0){
 			botRoller.move(0);
+		}
+
+
+		if(controller.get_digital(DIGITAL_LEFT)==1){
+			topRoller.move(-600); // bottom roller independent
+
+		}
+		else if (controller.get_digital(DIGITAL_RIGHT)==1){
+			topRoller.move(600);
+		}
+		else if (controller.get_digital(DIGITAL_LEFT)==0 && controller.get_digital(DIGITAL_RIGHT) == 0 && controller.get_digital(DIGITAL_L1) == 0 && controller.get_digital(DIGITAL_L2)==0){
+			topRoller.move(0);
 		}
 	//	encoder_value(200);
 		pros::delay(10);

@@ -48,7 +48,7 @@ const int auton_limit_minus_port = 2;
 // declare motors
 
 pros::Motor frontL(frontL_port, true);
-pros::Motor frontR(frontR_port, true);
+pros::Motor frontR(frontR_port, false);
 pros::Motor backL(backL_port,false);
 pros::Motor backR(backR_port, true);
 pros::Motor leftIntake(leftIntakePort,false);
